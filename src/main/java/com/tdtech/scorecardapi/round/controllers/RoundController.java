@@ -4,7 +4,6 @@ import com.tdtech.scorecardapi.round.entities.RoundRequest;
 import com.tdtech.scorecardapi.round.entities.RoundResponse;
 import com.tdtech.scorecardapi.round.services.RoundService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -31,5 +30,10 @@ public class RoundController {
     @PostMapping("/users/{userId}/rounds")
     public Mono<RoundResponse> createRound(@PathVariable String userId, @RequestBody RoundRequest round) {
         return roundService.createRound(round, userId);
+    }
+
+    @PutMapping("/users/{userId}/rounds/{roundId}")
+    public Mono<RoundResponse> updateRoundByUserId(@PathVariable String userId, @PathVariable String roundId, @RequestBody RoundRequest round) {
+        return roundService.updateRound(round, userId, roundId);
     }
 }

@@ -1,11 +1,11 @@
 package com.tdtech.scorecardapi.round.services;
 
+import com.tdtech.scorecardapi.bow.entities.BowDto;
 import com.tdtech.scorecardapi.round.entities.RoundDto;
 import com.tdtech.scorecardapi.round.entities.RoundRequest;
 import com.tdtech.scorecardapi.round.entities.RoundResponse;
 import com.tdtech.scorecardapi.round.repositories.RoundRepository;
 import com.tdtech.scorecardapi.user.entities.UserDto;
-import com.tdtech.scorecardapi.user.entities.UserResponse;
 import com.tdtech.scorecardapi.user.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -39,6 +39,23 @@ public class RoundService {
         return userMono.flatMap((foundUser) -> {
             RoundDto newRound = new RoundDto(round, foundUser);
             return roundRepository.save(newRound);
+        }).map(RoundResponse::new);
+    }
+
+    public Mono<RoundResponse> updateRound(RoundRequest r, String userId, String roundId) {
+        Mono<UserDto> userMono = userRepository.findById(userId).switchIfEmpty(Mono.error(new Exception("User not found: " + userId)));
+        Mono<RoundDto> roundMono = roundRepository.findByIdAndUserId(roundId, userId).switchIfEmpty(Mono.error(new Exception("Round not found: " + roundId)));
+        return Mono.zip(userMono, roundMono).log().flatMap(data -> {
+            UserDto user = data.getT1();
+            RoundDto round = data.getT2();
+            round.setUser(user);
+            round.setRoundDate(r.getRoundDate());
+            if(r.getBow() != null)
+                round.setBow(new BowDto(r.getBow()));
+            round.setLocation(r.getLocation());
+            round.setNotes(r.getNotes());
+            round.setScore(r.getScore());
+            return roundRepository.save(round);
         }).map(RoundResponse::new);
     }
 }
