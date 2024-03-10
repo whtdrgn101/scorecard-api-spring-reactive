@@ -32,4 +32,9 @@ public class UserController {
     public Mono<UserResponse> readUserById(@PathVariable String id) {
         return userService.readUserById(id);
     }
+
+    @PutMapping("{id}")
+    public Mono<UserResponse> updateUserById(@PathVariable String id, @RequestBody UserRequest user) {
+        return userService.updateUserById(id, user);
+    }
 }

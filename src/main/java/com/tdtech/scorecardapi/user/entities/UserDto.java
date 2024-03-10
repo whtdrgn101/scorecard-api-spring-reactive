@@ -1,6 +1,7 @@
 package com.tdtech.scorecardapi.user.entities;
 
 import com.tdtech.scorecardapi.bow.entities.BowDto;
+import com.tdtech.scorecardapi.bow.entities.BowRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,18 @@ public class UserDto {
                 bows.add(new BowDto(bow));
             });
             this.bows = bows;
+        }
+    }
+
+    public void fillBowsFromRequest(List<BowRequest> bows) {
+        if(bows != null) {
+            List<BowDto> nbows = new ArrayList<BowDto>();
+            bows.forEach((bow) -> {
+                nbows.add(new BowDto(bow));
+            });
+            this.bows = nbows;
+        } else {
+            this.bows = new ArrayList<BowDto>();
         }
     }
 }
