@@ -52,9 +52,12 @@ public class RoundService {
             round.setRoundDate(r.getRoundDate());
             if(r.getBow() != null)
                 round.setBow(new BowDto(r.getBow()));
+            else
+                round.setBow(null);
             round.setLocation(r.getLocation());
             round.setNotes(r.getNotes());
             round.setScore(r.getScore());
+            round.setRoundType(r.getRoundType());
             return roundRepository.save(round);
         }).map(RoundResponse::new);
     }
