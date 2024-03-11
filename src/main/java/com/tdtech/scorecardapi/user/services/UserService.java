@@ -5,12 +5,14 @@ import com.tdtech.scorecardapi.user.entities.UserRequest;
 import com.tdtech.scorecardapi.user.entities.UserResponse;
 import com.tdtech.scorecardapi.user.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
 @AllArgsConstructor
+@EnableAutoConfiguration
 public class UserService {
 
     final UserRepository userRepository;
