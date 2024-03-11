@@ -1,6 +1,5 @@
 package com.tdtech.scorecardapi.exceptions;
 
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
