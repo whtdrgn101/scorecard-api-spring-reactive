@@ -6,6 +6,7 @@ import com.tdtech.scorecardapi.user.entities.UserDto;
 import com.tdtech.scorecardapi.user.entities.UserRequest;
 import com.tdtech.scorecardapi.user.entities.UserResponse;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
@@ -15,8 +16,10 @@ import java.util.List;
 public class UserModelTests {
     @Test
     void shouldConvertRequestToDto() {
-        List<BowRequest> bows = new ArrayList<BowRequest>();
-        bows.add(new BowRequest("Compound", "testbow1", "Hoyte", "Podium", 55.00, 38.00, 5.65));
+        List<BowRequest> bows = new ArrayList<>();
+        BowRequest bowr = Mockito.mock(BowRequest.class);
+        bows.add(bowr);
+        Mockito.when(bowr.getName()).thenReturn("testBow");
         UserRequest userA = new UserRequest("test", "user", "test@test.com", "abc123", bows);
         UserDto userB = new UserDto(userA);
 
@@ -29,8 +32,10 @@ public class UserModelTests {
 
     @Test
     void shouldConvertDtoToResponse() {
-        List<BowDto> bows = new ArrayList<BowDto>();
-        bows.add(new BowDto("Compound", "testbow1", "Hoyte", "Podium", 55.00, 38.00, 5.65));
+        List<BowDto> bows = new ArrayList<>();
+        BowDto bowDto = Mockito.mock(BowDto.class);
+        Mockito.when(bowDto.getName()).thenReturn("testBow");
+        bows.add(bowDto);
         UserDto userA = new UserDto("id1", "test", "user", "test@test.com", "abc123", bows);
         UserResponse userB = new UserResponse(userA);
 

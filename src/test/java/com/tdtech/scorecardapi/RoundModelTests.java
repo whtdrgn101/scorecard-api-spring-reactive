@@ -5,6 +5,8 @@ import com.tdtech.scorecardapi.bow.entities.BowRequest;
 import com.tdtech.scorecardapi.round.entities.*;
 import com.tdtech.scorecardapi.user.entities.UserDto;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
@@ -16,12 +18,14 @@ public class RoundModelTests {
 
     @Test
     void shouldConvertRequestToDto() {
+
         List<BowDto> bows = new ArrayList<BowDto>();
         List<EndRequest> ends = new ArrayList<EndRequest>();
-        ends.add(new EndRequest(1,10));
-        ends.add(new EndRequest(2,11));
-        BowRequest bow = new BowRequest("Compound", "testbow1", "Hoyte", "Podium", 55.00, 38.00, 5.65);
-        UserDto user = new UserDto("id1","testFirst", "testLast", "test@email.com", "password", bows);
+        ends.add(Mockito.mock(EndRequest.class));
+        ends.add(Mockito.mock(EndRequest.class));
+        BowRequest bow = Mockito.mock(BowRequest.class);
+        UserDto user = Mockito.mock(UserDto.class);
+        Mockito.when(user.getId()).thenReturn("id1");
         RoundRequest roundA = new RoundRequest("id1", bow, "tnfaa", new Date(), "here", "notes1",ends, 300);
         RoundDto roundB = new RoundDto(roundA, user);
 
@@ -39,10 +43,11 @@ public class RoundModelTests {
     void shouldConvertDtoToResponse() {
         List<BowDto> bows = new ArrayList<BowDto>();
         List<EndDto> ends = new ArrayList<EndDto>();
-        ends.add(new EndDto(1,10));
-        ends.add(new EndDto(2,11));
-        BowDto bow = new BowDto("Compound", "testbow1", "Hoyte", "Podium", 55.00, 38.00, 5.65);
-        UserDto user = new UserDto("id1","testFirst", "testLast", "test@email.com", "password", bows);
+        ends.add(Mockito.mock(EndDto.class));
+        ends.add(Mockito.mock(EndDto.class));
+        BowDto bow = Mockito.mock(BowDto.class);
+        UserDto user = Mockito.mock(UserDto.class);
+        Mockito.when(user.getId()).thenReturn("id1");
         RoundDto roundA = new RoundDto("id1", user, bow, "nfaa", new Date(),"home","notes",ends, 500 );
         RoundResponse roundB = new RoundResponse(roundA);
 
@@ -55,6 +60,6 @@ public class RoundModelTests {
         assertThat(roundB.getNotes()).isEqualTo(roundA.getNotes());
         assertThat(roundB.getScore()).isEqualTo(roundA.getScore());
         assertThat(roundB.getEnds().size()).isEqualTo(roundA.getEnds().size());
-        //assertThat(roundB.getUser().getId()).isEqualTo(roundA.getUserId());
+        assertThat(roundB.getUser().getId()).isEqualTo(roundA.getUser().getId());
     }
 }
