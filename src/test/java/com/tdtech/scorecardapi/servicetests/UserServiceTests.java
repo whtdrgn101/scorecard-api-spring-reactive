@@ -41,7 +41,7 @@ public class UserServiceTests {
         UserService userService = new UserService(userRepository);
 
         StepVerifier.create(userService.updateUserById(userId,userRequest))
-                .expectNextMatches(user -> user.getId().equals("testId1"))
+                .expectNextMatches(user -> user.getFirstName().equals(userRequest.getFirstName()))
                 .expectComplete()
                 .verify();
 
