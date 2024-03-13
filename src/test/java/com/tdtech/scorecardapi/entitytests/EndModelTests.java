@@ -4,10 +4,8 @@ import com.tdtech.scorecardapi.round.entities.EndDto;
 import com.tdtech.scorecardapi.round.entities.EndRequest;
 import com.tdtech.scorecardapi.round.entities.EndResponse;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
 public class EndModelTests {
 
     @Test

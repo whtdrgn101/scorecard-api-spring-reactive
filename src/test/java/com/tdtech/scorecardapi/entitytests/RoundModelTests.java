@@ -5,15 +5,12 @@ import com.tdtech.scorecardapi.bow.entities.BowRequest;
 import com.tdtech.scorecardapi.round.entities.*;
 import com.tdtech.scorecardapi.user.entities.UserDto;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
 public class RoundModelTests {
 
     @Test

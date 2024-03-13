@@ -5,10 +5,8 @@ import com.tdtech.scorecardapi.bow.entities.BowRequest;
 import com.tdtech.scorecardapi.bow.entities.BowResponse;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest
 public class BowModelTests {
 
     @Test

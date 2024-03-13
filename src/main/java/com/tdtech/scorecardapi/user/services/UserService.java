@@ -19,7 +19,7 @@ public class UserService {
 
     public Mono<UserResponse> createUser(UserRequest user) {
         UserDto newUser = new UserDto(user);
-        Mono<UserDto> userMono = userRepository.save(newUser).log();
+        Mono<UserDto> userMono = userRepository.save(newUser);
         return userMono.map(UserResponse::new);
     }
     public Flux<UserResponse> readAllUsers() {
@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public Mono<UserResponse> readUserById(String id) {
-        return userRepository.findById(id).log().map(UserResponse::new);
+        return userRepository.findById(id).map(UserResponse::new);
     }
 
     public Mono<UserResponse> updateUserById(String id, UserRequest user) {

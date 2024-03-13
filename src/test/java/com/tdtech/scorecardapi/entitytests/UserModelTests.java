@@ -2,18 +2,15 @@ package com.tdtech.scorecardapi.entitytests;
 
 import com.tdtech.scorecardapi.bow.entities.BowDto;
 import com.tdtech.scorecardapi.bow.entities.BowRequest;
-import com.tdtech.scorecardapi.bow.entities.BowResponse;
 import com.tdtech.scorecardapi.user.entities.UserDto;
 import com.tdtech.scorecardapi.user.entities.UserRequest;
 import com.tdtech.scorecardapi.user.entities.UserResponse;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
 public class UserModelTests {
     @Test
     void shouldConvertRequestToDto() {
