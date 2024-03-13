@@ -9,7 +9,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Document(collection="rounds")
@@ -25,6 +27,7 @@ public class RoundDto {
     private Date roundDate;
     private String location;
     private String notes;
+    private List<EndDto> ends;
     private int score;
 
     public RoundDto(RoundRequest round, UserDto user) {
@@ -33,6 +36,13 @@ public class RoundDto {
         }
         if(round.getBow() != null) {
             this.bow = new BowDto(round.getBow());
+        }
+        if(round.getEnds() != null) {
+            List<EndDto> endList = new ArrayList<EndDto>();
+            round.getEnds().forEach((e) -> {
+                endList.add(new EndDto(e));
+            });
+            this.ends = endList;
         }
         this.roundType = round.getRoundType();
         this.roundDate = round.getRoundDate();

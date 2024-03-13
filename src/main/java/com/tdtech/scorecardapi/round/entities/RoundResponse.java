@@ -5,7 +5,9 @@ import com.tdtech.scorecardapi.user.entities.UserResponse;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +19,7 @@ public class RoundResponse {
     private Date roundDate;
     private String location;
     private String notes;
+    private List<EndResponse> ends;
     private int score;
 
     public RoundResponse(RoundDto round) {
@@ -26,6 +29,13 @@ public class RoundResponse {
         }
         if(round.getBow() != null) {
             this.bow = new BowResponse(round.getBow());
+        }
+        if(round.getEnds() != null) {
+            List<EndResponse> endList = new ArrayList<EndResponse>();
+            round.getEnds().forEach((e) -> {
+                endList.add(new EndResponse(e));
+            });
+            this.ends = endList;
         }
         this.roundType = round.getRoundType();
         this.roundDate = round.getRoundDate();

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,5 +17,6 @@ public class RoundRequest {
     private Date roundDate;
     private String location;
     private String notes;
+    private List<EndRequest> ends;
     private int score;
 }
