@@ -2,9 +2,7 @@ package com.tdtech.scorecardapi.round.entities;
 
 import com.tdtech.scorecardapi.bow.entities.BowDto;
 import com.tdtech.scorecardapi.user.entities.UserDto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
@@ -13,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Document(collection="rounds")
 @NoArgsConstructor
 @AllArgsConstructor

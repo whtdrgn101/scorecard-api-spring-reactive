@@ -1,13 +1,13 @@
 package com.tdtech.scorecardapi.round.entities;
 
 import com.tdtech.scorecardapi.bow.entities.BowRequest;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoundRequest {

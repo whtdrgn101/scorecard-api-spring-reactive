@@ -2,6 +2,7 @@ package com.tdtech.scorecardapi;
 
 import com.tdtech.scorecardapi.bow.entities.BowDto;
 import com.tdtech.scorecardapi.bow.entities.BowRequest;
+import com.tdtech.scorecardapi.bow.entities.BowResponse;
 import com.tdtech.scorecardapi.user.entities.UserDto;
 import com.tdtech.scorecardapi.user.entities.UserRequest;
 import com.tdtech.scorecardapi.user.entities.UserResponse;
@@ -45,5 +46,23 @@ public class UserModelTests {
         assertThat(userB.getLastName()).isEqualTo(userA.getLastName());
         assertThat(userB.getEmail()).isEqualTo(userA.getEmail());
         assertThat(userB.getBows().size()).isEqualTo(userA.getBows().size());
+    }
+
+    @Test
+    void shouldFillBowsWithArray() {
+        UserDto user = new UserDto("id1","tim","test","test@email.com","testPass",null);
+        List<BowRequest> bows = new ArrayList<>();
+        bows.add(Mockito.mock(BowRequest.class));
+
+        user.fillBowsFromRequest(bows);
+
+        assertThat(user.getBows().size()).isEqualTo(bows.size());
+    }
+
+    @Test
+    void shouldFillBowsSetNull() {
+        UserDto user = new UserDto("id1","tim","test","test@email.com","testPass",null);
+        user.fillBowsFromRequest(null);
+        assertThat(user.getBows().size()).isEqualTo(0);
     }
 }

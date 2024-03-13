@@ -2,15 +2,14 @@ package com.tdtech.scorecardapi.user.entities;
 
 import com.tdtech.scorecardapi.bow.entities.BowDto;
 import com.tdtech.scorecardapi.bow.entities.BowRequest;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Document(collection = "users")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,10 +36,10 @@ public class UserDto {
         }
     }
 
-    public void fillBowsFromRequest(List<BowRequest> bows) {
-        if(bows != null) {
+    public void fillBowsFromRequest(List<BowRequest> bowList) {
+        if(bowList != null) {
             List<BowDto> nbows = new ArrayList<BowDto>();
-            bows.forEach((bow) -> {
+            bowList.forEach((bow) -> {
                 nbows.add(new BowDto(bow));
             });
             this.bows = nbows;

@@ -3,13 +3,16 @@ package com.tdtech.scorecardapi.round.entities;
 import com.tdtech.scorecardapi.bow.entities.BowResponse;
 import com.tdtech.scorecardapi.user.entities.UserResponse;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class RoundResponse {
     private String id;

@@ -13,7 +13,7 @@ public class BowModelTests {
 
     @Test
     void shouldConvertRequestToDto() {
-        BowRequest bowA = Mockito.mock(BowRequest.class);
+        BowRequest bowA = new BowRequest("compound","testBowName","testBowMan","testBowModel",55.0,38.0,7.25);
         BowDto bowB = new BowDto(bowA);
 
         assertThat(bowB.getName()).isEqualTo(bowA.getName());
