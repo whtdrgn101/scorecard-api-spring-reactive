@@ -1,4 +1,4 @@
-package com.tdtech.scorecardapi;
+package com.tdtech.scorecardapi.entitytests;
 
 import com.tdtech.scorecardapi.exceptions.ExceptionHandlers;
 import com.tdtech.scorecardapi.exceptions.ResourceNotFoundException;

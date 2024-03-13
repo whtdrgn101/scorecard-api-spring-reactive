@@ -1,4 +1,4 @@
-package com.tdtech.scorecardapi;
+package com.tdtech.scorecardapi.entitytests;
 
 import com.tdtech.scorecardapi.round.entities.EndDto;
 import com.tdtech.scorecardapi.round.entities.EndRequest;

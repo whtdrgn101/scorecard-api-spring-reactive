@@ -1,4 +1,4 @@
-package com.tdtech.scorecardapi;
+package com.tdtech.scorecardapi.entitytests;
 
 import com.tdtech.scorecardapi.bow.entities.BowDto;
 import com.tdtech.scorecardapi.bow.entities.BowRequest;
