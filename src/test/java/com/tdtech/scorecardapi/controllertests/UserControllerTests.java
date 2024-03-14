@@ -55,7 +55,7 @@ public class UserControllerTests {
     }
 
     @Test
-    void shouldReturnCreatedAfterCreate() {
+    void shouldReturnCreatedAfterUserCreate() {
         WebTestClient client;
         var userRequest = new UserRequest("testFirst", "testLast", "test@email.com", "testPass", null);
         UserDto userDto = new UserDto(userRequest);
@@ -77,7 +77,7 @@ public class UserControllerTests {
     }
 
     @Test
-    void shouldReturnOkAfterUpdate() {
+    void shouldReturnOkAfterUserUpdate() {
         WebTestClient client;
         var userRequest = new UserRequest("testFirst", "testLast", "test@email.com", "testPass", null);
         UserDto userDto = new UserDto(userRequest);
