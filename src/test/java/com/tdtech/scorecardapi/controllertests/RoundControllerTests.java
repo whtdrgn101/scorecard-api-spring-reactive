@@ -99,15 +99,13 @@ public class RoundControllerTests {
                 .expectStatus().isOk();
     }
 
-
+    @Test
     void shouldReturnNotFoundOnCreateForBadUser() {
         WebTestClient client;
         BowRequest bowRequest = Mockito.mock(BowRequest.class);
         UserDto userDto = Mockito.mock(UserDto.class);
         userDto.setId("userId1");
         RoundRequest roundRequest = new RoundRequest(userDto.getId(), bowRequest,"NFAA",new Date(),"locationTest1","notesTest1", null, 50);
-        RoundDto roundDto = new RoundDto(roundRequest,userDto);
-        RoundResponse roundResponse = new RoundResponse(roundDto);
 
         RoundService roundService = Mockito.mock(RoundService.class);
         Mockito.when(roundService.createRound(Mockito.any(RoundRequest.class), Mockito.anyString())).thenThrow(new ResourceNotFoundException("test", "User"));
