@@ -13,9 +13,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.function.Supplier;
-
-
 public class UserControllerTests {
 
     @Test
@@ -55,7 +52,7 @@ public class UserControllerTests {
     }
 
     @Test
-    void shouldReturnCreatedAfterCreate() {
+    void shouldReturnCreatedAfterUserCreate() {
         WebTestClient client;
         var userRequest = new UserRequest("testFirst", "testLast", "test@email.com", "testPass", null);
         UserDto userDto = new UserDto(userRequest);
@@ -77,7 +74,7 @@ public class UserControllerTests {
     }
 
     @Test
-    void shouldReturnOkAfterUpdate() {
+    void shouldReturnOkAfterUserUpdate() {
         WebTestClient client;
         var userRequest = new UserRequest("testFirst", "testLast", "test@email.com", "testPass", null);
         UserDto userDto = new UserDto(userRequest);

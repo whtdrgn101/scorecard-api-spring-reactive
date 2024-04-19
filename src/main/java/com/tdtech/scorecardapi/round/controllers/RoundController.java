@@ -4,6 +4,8 @@ import com.tdtech.scorecardapi.round.entities.RoundRequest;
 import com.tdtech.scorecardapi.round.entities.RoundResponse;
 import com.tdtech.scorecardapi.round.services.RoundService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,8 +30,9 @@ public class RoundController {
     }
 
     @PostMapping("/users/{userId}/rounds")
-    public Mono<RoundResponse> createRound(@PathVariable String userId, @RequestBody RoundRequest round) {
-        return roundService.createRound(round, userId);
+    public Mono<ResponseEntity<RoundResponse>> createRound(@PathVariable String userId, @RequestBody RoundRequest round) {
+        Mono<RoundResponse> roundResponseMono = roundService.createRound(round, userId);
+        return roundResponseMono.map(r -> new ResponseEntity<>(r, HttpStatus.CREATED));
     }
 
     @PutMapping("/users/{userId}/rounds/{roundId}")
